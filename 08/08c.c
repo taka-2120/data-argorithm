@@ -113,6 +113,7 @@ Node *getSuccessor(Node *node)
     node = target;
     target = target->parent;
   }
+  return target;
 }
 
 void delete(Node *node)

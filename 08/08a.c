@@ -11,8 +11,8 @@ Node *root, *NIL;
 
 void insert(int key)
 {
-  Node *tmp = NIL;
-  Node *parent = root;
+  Node *parent = NIL;
+  Node *child = root;
   Node *current = malloc(sizeof(Node));
 
   current->key = key;
@@ -20,32 +20,32 @@ void insert(int key)
   current->right = NIL;
   current->parent = NIL;
 
-  while (parent != NIL)
+  while (child != NIL)
   {
-    tmp = parent;
-    if (current->key < parent->key)
+    parent = child;
+    if (current->key < child->key)
     {
-      parent = parent->left;
+      child = child->left;
     }
     else
     {
-      parent = parent->right;
+      child = child->right;
     }
   }
 
-  current->parent = tmp;
+  current->parent = parent;
 
-  if (tmp == NIL)
+  if (parent == NIL)
   {
     root = current;
   }
-  else if (current->key < tmp->key)
+  else if (current->key < parent->key)
   {
-    tmp->left = current;
+    parent->left = current;
   }
   else
   {
-    tmp->right = current;
+    parent->right = current;
   }
 }
 
